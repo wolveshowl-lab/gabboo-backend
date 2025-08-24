@@ -1,12 +1,10 @@
 spring:
   profiles: dev
-
   datasource:
-    url: jdbc:mysql://localhost:3306/gabboo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3307/gabboo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
     username: gabboo
     password: wolfp25!
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
