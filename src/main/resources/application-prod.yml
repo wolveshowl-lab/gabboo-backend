@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql:3306/gabboo
+    username: gabboo
+    password: wolfp25!
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false

@@ -1,0 +1,24 @@
+# Gradle 빌드 결과물
+/build
+/.gradle
+
+# IDE 설정 파일
+/.idea
+*.iml
+*.ipr
+*.iws
+
+# OS별 임시 파일
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# 로그
+*.log
+
+# docker-compose에서 마운트되는 src 제외 (개발 중에 호스트 코드 사용)
+# 이건 필요 시 제외 안 할 수도 있음
+# /src
