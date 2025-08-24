@@ -1,12 +1,19 @@
-# Build stage
-FROM gradle:8-jdk21 AS build
+# -------- Build Stage --------
+FROM gradle:8-jdk21 AS builder
 WORKDIR /app
-COPY --chown=gradle:gradle . .
-RUN gradle build --no-daemon
 
-# Runtime stage
+# 소스 복사
+COPY --chown=gradle:gradle . .
+
+# Gradle 빌드 (테스트 제외)
+RUN gradle build --no-daemon -x test
+
+# -------- Runtime Stage --------
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-COPY --from=build /app/build/libs/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+
+# Build Stage에서 만든 jar 복사
+COPY --from=builder /app/build/libs/*.jar app.jar
+
+# 컨테이너 시작 시 실행
+ENTRYPOINT ["java", "-jar", "app.jar"]
