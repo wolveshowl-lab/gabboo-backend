@@ -19,7 +19,7 @@ services:
       MYSQL_USER: gabboo
       MYSQL_PASSWORD: wolfp25!
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data_dev:/var/lib/mysql
 
