@@ -1,11 +1,34 @@
+#spring:
+#  config:
+#    activate:
+#      on-profile: dev
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/gabboo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+#    username: gabboo
+#    password: wolfp25!
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
 spring:
-  profiles: dev
   datasource:
-    url: jdbc:mysql://localhost:3307/gabboo?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
-    username: gabboo
-    password: wolfp25!
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    url: jdbc:h2:mem:test
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
+        show_sql: true
+
