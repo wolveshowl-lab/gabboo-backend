@@ -18,19 +18,17 @@ public class UserFactory {
     private final SocialAccountRepository socialAccountRepository;
 
     public User createUserWithSocial(OAuth2UserInfo userInfo, String provider) {
-        // 기존 소셜 계정 조회
         Optional<SocialAccount> socialOpt = socialAccountRepository.findByProviderAndProviderId(provider, userInfo.getId());
         if (socialOpt.isPresent()) {
             return socialOpt.get().getUser();
         }
 
-        // 신규 사용자 생성
         User user = userRepository.save(User.builder()
                 .email(userInfo.getEmail())
                 .name(userInfo.getName())
+                .roles("USER")
                 .build());
 
-        // 소셜 계정 연동
         SocialAccount social = SocialAccount.builder()
                 .user(user)
                 .provider(provider)
@@ -39,5 +37,14 @@ public class UserFactory {
         socialAccountRepository.save(social);
 
         return user;
+    }
+
+    public User createUser(String email, String name, String password, String roles) {
+        return userRepository.save(User.builder()
+                .email(email)
+                .name(name)
+                .password(password)
+                .roles(roles)
+                .build());
     }
 }
